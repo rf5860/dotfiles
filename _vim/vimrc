@@ -233,6 +233,11 @@ map <silent> <leader><cr> :nohl<CR><C-L>
 
 map <silent><leader>w :call ToggleWrap()<cr>
 
+noremap <leader>y "+y
+noremap <leader>Y "+y$
+"nmap <leader>p "+p
+nmap <leader>P "+P
+
 ":au filetype help :nnoremap <buffer><CR> <c-]>
 ":au filetype help :nnoremap <buffer><BS> <c-T>
 
