@@ -1,18 +1,18 @@
 [color]
-	ui = auto
+  ui = auto
 [core]
-	autocrlf = input
-	pager = less -F -X
-	editor = /Applications/MacVim.app/Contents/MacOS/Vim
+  autocrlf = input
+  pager = less -F -X
+  editor = /Applications/MacVim.app/Contents/MacOS/Vim
 [alias]
-    co = checkout
-    ci = commit
-    st = status
-    br = branch
-    hist = log --pretty=format:'%C(auto)%h %ad | %s%d [%an]' --graph --date=short
-    type = cat-file -t
-    dump = cat-file -p
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:'%C(auto)%h %ad | %s%d [%an]' --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
 [push]
-    default = simple
+  default = simple
 [include]
-    path = ~/.dotfiles/gitconfig.user
+  path = ~/.dotfiles/gitconfig.user
