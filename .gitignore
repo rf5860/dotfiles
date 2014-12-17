@@ -1,5 +1,5 @@
 # Don't want to push user info
-gitconfig.user
+gitconfig.private
 
 # Created by https://www.gitignore.io
 ### vim ###
