@@ -1,12 +1,7 @@
-if [[ $UID == 0 || $EUID == 0  ]]; then
-    local pchar="#"
-else
-    local pchar="➜"
-fi
-local ret_status="%(?:%{$fg_bold[green]%}${pchar} :%{$fg_bold[red]%}${pchar} %s)"
-PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%2c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+local ret_status="%(?..%{$fg_bold[red]%}✘ )%(!.%{$fg_bold[yellow]%}⚡  .)"
+PROMPT='${ret_status}%{$fg_bold[cyan]%}%2c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%} ✗%{$fg[blue]%})%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
