@@ -18,6 +18,7 @@ binaries=(
     less
     rsync
     the_silver_searcher
+    vim
 )
 brew install ${binaries[@]}
 
@@ -70,6 +71,7 @@ gems=(
     jekyll
     less
     page-object
+    pry
     rb-gsl
     rspec
     therubyracer
