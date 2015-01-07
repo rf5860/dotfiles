@@ -3,8 +3,6 @@ alias lal='ls -lA'
 alias more='less'
 alias rake='noglob rake'
 alias ghi='git hist'
-alias vi=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 
 export LESS="-RM"
 export LESSHISTFILE=-
