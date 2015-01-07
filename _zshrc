@@ -20,7 +20,8 @@ ZSH_COMPDUMP="$HOME/.cache/zcompdump"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git gitignore brew colored-man mix sudo dirhistory history)
+plugins=(gem git gitignore brew colored-man mix sudo dirhistory history)
+
 source $ZSH/oh-my-zsh.sh
 
 path=(
