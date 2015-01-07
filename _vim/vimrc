@@ -1,10 +1,11 @@
-" Ideas in this vimrc from:
-"     http://vim.wikia.com/wiki/Example_vimrc 
-"     http://amix.dk/vim/vimrc.html
-"     http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
-"     http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
+" Ideas in this vimrc from many places, including:
+"   http://vim.wikia.com/wiki/Example_vimrc 
+"   http://amix.dk/vim/vimrc.html
+"   http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
+"   http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
 
 set nocompatible "Really? Does anybody use compatible anymore?
+set modeline
 set viminfo+=n~/.cache/viminfo
 
 "------------------------------------------------------------
@@ -23,7 +24,6 @@ Plugin 'bling/vim-airline'
     let g:airline#extensions#whitespace#enabled=0
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#fnamemod = ':t'
-    set nomodeline
     set noshowmode
     set laststatus=2
     set cmdheight=2
