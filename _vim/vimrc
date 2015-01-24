@@ -98,6 +98,7 @@ Plugin 'tpope/vim-fugitive'             " git wrapper
 Plugin 'mattn/emmet-vim'                " quick html/css editing
 
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'kmdsbng/vim-ruby-eval'
 
 " Snippets support
 Plugin 'MarcWeber/vim-addon-mw-utils'
