@@ -26,7 +26,6 @@ echo "Installing apps..."
 brew install caskroom/cask/brew-cask
 apps=(
     alfred
-    atom
     calibre
     dropbox
     google-chrome
