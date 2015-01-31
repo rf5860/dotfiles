@@ -33,13 +33,13 @@ bind( 'c', mNone, cycleCalls( toGrid,
 // Space toggles the focussed between full screen and its initial size and position.
 bind( 'space', mNone, function() { Window.focusedWindow().toggleFullscreen(); });
 
-// <CMD> + cursor keys make any window occupy any half of the screen.
+// The cursor keys make any window occupy one side of the screen.
 bind( 'left',  mNone, cycleCalls( toGrid, [ [0, 0, 0.5, 1],   [0, 0, 0.6, 1],   [0, 0, 0.4, 1] ] ));
 bind( 'right', mNone, cycleCalls( toGrid, [ [0.5, 0, 0.5, 1], [0.4, 0, 0.6, 1], [0.6, 0, 0.4, 1] ] ));
 bind( 'up',    mNone, function() { Window.focusedWindow().toGrid(0, 0, 1, 0.3); });
 bind( 'down',  mNone, function() { Window.focusedWindow().toGrid(0, 0.7, 1, 0.3); });
 
-// The cursor keys move the focussed window.
+// The <CMD> + cursor keys move the focussed window.
 bind( 'left',  mCmd, function() { Window.focusedWindow().nudgeLeft( 5 ); });
 bind( 'right', mCmd, function() { Window.focusedWindow().nudgeRight( 5 ); });
 bind( 'up',    mCmd, function() { Window.focusedWindow().nudgeUp( 5 ); });
