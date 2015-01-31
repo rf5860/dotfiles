@@ -29,3 +29,5 @@ path=(
   $HOME/.rvm/bin
   $path
 )
+
+# vim: filetype=zsh

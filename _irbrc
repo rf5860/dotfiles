@@ -136,3 +136,5 @@ if defined? Wirble
 end
 
 puts "\n#{RUBY_DESCRIPTION}"
+
+# vim: filetype=Ruby
