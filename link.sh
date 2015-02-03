@@ -8,6 +8,7 @@ function e_arrow()    { echo -e " \033[1;34m➜\033[0m  $@"; }
 
 # Just in case there is a file starting with _ you don't want linked
 ignore=(
+   "_phoenix.js"
 )
 
 dotfiles=`pwd`
