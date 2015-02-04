@@ -143,7 +143,17 @@ function toggleMicrophoneMute()
         else
             success, junk = hs.applescript.applescript( "set volume input volume 0" )
             hs.notify.new( {title='Microphone muted'} ):send()
+            microphoneLevel = currentVolume
         end
+    end
+end
+
+-- Debug: for trying out snippets of code
+function dbg()
+    apps = hs.application.runningApplications()
+    for appIndex=1,#apps do
+        app = apps[appIndex]
+        print( app:pid() .. ' ' .. app:title() )
     end
 end
 
