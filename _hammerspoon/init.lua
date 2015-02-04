@@ -10,7 +10,6 @@ local modCmd   = {"⌘"}
 local modShift = {"⇧"}
 local modHyper = {"⌘", "⌥", "⌃", "⇧"}
 
--- Short form for inspect DOESN'T WORK
 function vw( args )
     print( hs.inspect.inspect( args ) )
 end
