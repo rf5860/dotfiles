@@ -1,7 +1,8 @@
--- Based on https://github.com/cmsj/hammerspoon-config
-
 -- Misc setup
 hs.window.animationDuration = 0
+local vw = hs.inspect.inspect
+local configFileWatcher = nil
+local appWatcher = nil
 
 -- Keyboard modifiers, Capslock bound to cmd+alt+ctrl+shift via Seil and Karabiner
 local modNone  = {}
@@ -10,14 +11,7 @@ local modCmd   = {"⌘"}
 local modShift = {"⇧"}
 local modHyper = {"⌘", "⌥", "⌃", "⇧"}
 
-function vw( args )
-    print( hs.inspect.inspect( args ) )
-end
-
 -- Reload config automatically
-local configFileWatcher = nil
-local appWatcher = nil
-
 function reloadConfig()
     configFileWatcher:stop()
     configFileWatcher = nil
@@ -25,6 +19,9 @@ function reloadConfig()
     appWatcher = nil
     hs.reload()
 end
+
+configFileWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig)
+configFileWatcher:start()
 
 -- Callback function for application events
 function applicationWatcher(appName, eventType, appObject)
@@ -35,9 +32,6 @@ function applicationWatcher(appName, eventType, appObject)
         end
     end
 end
-
-configFileWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig)
-configFileWatcher:start()
 
 appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
@@ -174,6 +168,8 @@ modalBind( modNone, 'down',  function() toGrid( {0, 0.7, 1, 0.3 } ) end )
 -- ------------------------
 hs.hotkey.bind( modHyper, 'f', function() hs.application.launchOrFocus( "Finder" ) end )
 hs.hotkey.bind( modHyper, 'h', function() os.execute( "open ~" ) end )
+hs.hotkey.bind( modHyper, 'q', function() hs.application.launchOrFocus( "Google Chrome" ) end )
+hs.hotkey.bind( modHyper, 'w', function() hs.application.launchOrFocus( "iTerm" ) end )
 hs.hotkey.bind( modHyper, 'm', toggleMicrophoneMute )
 hs.hotkey.bind( modHyper, 'y', hs.toggleConsole )
 
