@@ -1,3 +1,6 @@
+-- spaces = require("spaces")
+spaces = require("hs._asm.undocumented.spaces")
+
 -- Misc setup
 hs.window.animationDuration = 0
 local vw = hs.inspect.inspect
@@ -58,6 +61,15 @@ function enableModal()
         modalKeys[ keyCount ]:enable()
     end
     hs.alert.show( "Window manager active", 999999 )
+end
+
+function caffeinate()
+    hs.caffeinate.toggle("displayIdle")
+    if hs.caffeinate.get("displayIdle") then
+        hs.alert.show("Staying AWAKE!", 2)
+    else
+        hs.alert.show("Sleepy", 2)
+    end
 end
 
 hs.hotkey.bind( modHyper, 'a', function()
@@ -154,7 +166,7 @@ end
 -- Modal keys
 -- ------------------------
 -- Centre window
-modalBind( modNone, 'c', cycleCalls( toGrid, {{.04, 0, 0.92, 1},{0.22, 0.025, 0.56, 0.95},{0.1, 0, 0.8, 1}} ) )
+modalBind( modNone, 'c', cycleCalls( toGrid, {{0.1,0,0.8,1},{.04, 0, 0.92, 1},{0.22, 0.025, 0.56, 0.95}} ) )
 -- Toggle between maximized and its initial size and position.
 modalBind( modNone, 'space', function() toggleMaximize(  hs.window.focusedWindow() ) end )
 -- Size/position to one side of the screen
@@ -166,12 +178,15 @@ modalBind( modNone, 'down',  function() toGrid( {0, 0.7, 1, 0.3 } ) end )
 -- ------------------------
 -- Non-modal keys
 -- ------------------------
+hs.hotkey.bind( modHyper, 'c', caffeinate )
 hs.hotkey.bind( modHyper, 'f', function() hs.application.launchOrFocus( "Finder" ) end )
 hs.hotkey.bind( modHyper, 'h', function() os.execute( "open ~" ) end )
-hs.hotkey.bind( modHyper, 'q', function() hs.application.launchOrFocus( "Google Chrome" ) end )
-hs.hotkey.bind( modHyper, 'w', function() hs.application.launchOrFocus( "iTerm" ) end )
+-- hs.hotkey.bind( modHyper, 'q', function() hs.application.launchOrFocus( "Google Chrome" ) end )
+-- hs.hotkey.bind( modHyper, 'w', function() hs.application.launchOrFocus( "iTerm" ) end )
 hs.hotkey.bind( modHyper, 'm', toggleMicrophoneMute )
 hs.hotkey.bind( modHyper, 'y', hs.toggleConsole )
+-- hs.hotkey.bind( modHyper, '1', spaces.movetospace(1) )
+-- hs.hotkey.bind( modHyper, '2', spaces.movetospace(2) )
 
 -- Finally, show a notification that we finished loading the config
 hs.notify.new( {title='Hammerspoon', subTitle='Configuration loaded'} ):send()

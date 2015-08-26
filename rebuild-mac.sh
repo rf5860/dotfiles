@@ -15,8 +15,10 @@ binaries=(
     git
     gnu-getopt
     gsl
+    hub
     less
     rsync
+    sqlite
     the_silver_searcher
     vim
 )
@@ -29,9 +31,11 @@ apps=(
     calibre
     dropbox
     google-chrome
+    hammerspoon
     iterm2
     java
     karabiner
+    macvim
     nvalt
     pandoc
     pdftk

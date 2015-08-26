@@ -7,6 +7,8 @@ alias ghi='git hist'
 export LESS="-RM"
 export LESSHISTFILE=-
 
+export EDITOR=vim
+
 HISTFILE=~/.cache/zsh_history
 
 path() {

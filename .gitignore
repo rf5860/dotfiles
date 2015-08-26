@@ -1,5 +1,6 @@
 # Don't want to push user info
 gitconfig.private
+_hammerspoon/hs
 
 # Created by https://www.gitignore.io
 ### vim ###
