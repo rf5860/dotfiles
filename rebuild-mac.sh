@@ -17,6 +17,7 @@ binaries=(
     gsl
     hub
     less
+    npm
     rsync
     sqlite
     the_silver_searcher
@@ -80,6 +81,11 @@ gems=(
     therubyracer
 )
 gem install ${gems[@]} --no-ri --no-rdoc 
+
+echo "Installing nvm, latest node stable, updating to latest npm..."
+git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
+nvm install stable
+npm install npm -g
 
 echo "Installing python eggs..."
 sudo easy_install -U pytest

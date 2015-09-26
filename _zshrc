@@ -26,6 +26,7 @@ source $ZSH/oh-my-zsh.sh
 
 path=(
   $HOME/local/bin
+  $HOME/.nvm/bin
   $HOME/.rvm/bin
   $path
 )
