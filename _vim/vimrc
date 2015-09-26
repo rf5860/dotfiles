@@ -53,7 +53,16 @@ Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-expand-region'
 
 " add appropriate 'end' statements when opening detected
-" Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-endwise'
+
+" for writing, in particular in markdown
+Plugin 'reedes/vim-pencil'
+augroup pencil
+    autocmd!
+    autocmd FileType markdown,text
+        \   call pencil#init({'wrap': 'hard', 'textwidth': 78})
+        \ | setlocal spell makeprg=atdtool\ %
+augroup END
 
 " File manager
 Plugin 'Shougo/vimfiler.vim'
