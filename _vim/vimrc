@@ -4,7 +4,7 @@
 "   http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
 "   http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
 
-set nocompatible "Really? Does anybody use compatible anymore?
+set nocompatible
 set modeline
 set viminfo+=n~/.cache/viminfo
 
@@ -12,7 +12,7 @@ set viminfo+=n~/.cache/viminfo
 " Plugins and most of their config {{{1
 
 " Plugin loader to load all other plugins
-filetype off "required
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
@@ -101,13 +101,13 @@ Plugin 'Shougo/unite.vim'
 Plugin 'jiangmiao/auto-pairs'           " handle open/close quotes, brackets, etc
     let g:AutoPairsMapCR=0              " map CR broken (at least in markfile file)
 
+" cs"'
 Plugin 'tpope/vim-surround'             " add surround action
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'tpope/vim-fugitive'             " git wrapper
 Plugin 'mattn/emmet-vim'                " quick html/css editing
 
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'kmdsbng/vim-ruby-eval'
 
 " Snippets support
 Plugin 'MarcWeber/vim-addon-mw-utils'
