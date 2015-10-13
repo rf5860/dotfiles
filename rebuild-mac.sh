@@ -22,6 +22,7 @@ binaries=(
     sqlite
     the_silver_searcher
     vim
+    zsh
 )
 brew install ${binaries[@]}
 
@@ -29,6 +30,7 @@ echo "Installing apps..."
 brew install caskroom/cask/brew-cask
 apps=(
     alfred
+    android-file-transfer
     calibre
     dropbox
     google-chrome
