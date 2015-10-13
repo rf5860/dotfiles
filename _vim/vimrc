@@ -44,7 +44,7 @@ Plugin 'haya14busa/incsearch.vim'
     let g:incsearch#consistent_n_direction = 1
 
 " Delete buffer leaving window structure intact
-Plugin 'moll/vim-bbye'
+Plugin 'gwww/vim-bbye'
 
 " Toggle comments: <visual>gc, gc<motion>; Remove comments on current and adjacent lines gcu
 Plugin 'tpope/vim-commentary'
@@ -52,26 +52,36 @@ Plugin 'tpope/vim-commentary'
 " + to expand visual select; _ (underscore) to shrink
 Plugin 'terryma/vim-expand-region'
 
-" add appropriate 'end' statements when opening detected
-Plugin 'tpope/vim-endwise'
-
 " for writing, in particular in markdown
 Plugin 'reedes/vim-pencil'
-augroup pencil
-    autocmd!
-    autocmd FileType markdown,text
-        \   call pencil#init({'wrap': 'hard', 'textwidth': 78})
-        \ | setlocal spell makeprg=atdtool\ %
-augroup END
-
-" File manager
-Plugin 'Shougo/vimfiler.vim'
-    let g:vimfiler_as_default_explorer = 1
+    augroup pencil
+        autocmd!
+        autocmd FileType markdown
+            \   call pencil#init({'wrap': 'hard', 'textwidth': 78})
+            \ | setlocal spell makeprg=atdtool\ %
+        autocmd FileType text
+            \   call pencil#init({'wrap': 'hard', 'textwidth': 78})
+    augroup END
 
 " File, buffer, yank, and lots more
 Plugin 'Shougo/unite.vim'
     Plugin 'Shougo/vimproc.vim'   " unite async mode
     Plugin 'Shougo/unite-outline' " unite outline from buffer
+
+    Plugin 'Shougo/vimfiler.vim'
+
+    let g:vimfiler_as_default_explorer = 1
+    let g:vimfiler_tree_leaf_icon = " "
+    let g:vimfiler_tree_opened_icon = '▾'
+    let g:vimfiler_tree_closed_icon = '▸'
+    let g:vimfiler_file_icon = '-'
+    let g:vimfiler_marked_file_icon = '✓'
+    let g:vimfiler_readonly_file_icon = '✗'
+    let g:vimfiler_time_format = '%Y-%m-%d %H:%M:%S'
+    "let g:vimfiler_expand_jump_to_first_child = 0
+    let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
+    command! -nargs=? -complete=customlist,vimfiler#complete VimFilerExplorerQuit 
+        \ call vimfiler#init#_command({'explorer':1,'explorer_columns':'type:size:time','split':0,'quit':1}, <q-args>)
 
     nmap <space> [unite]
     nnoremap [unite] <nop>
@@ -98,8 +108,12 @@ Plugin 'Shougo/unite.vim'
         imap <buffer> <esc>   <Plug>(unite_exit)
     endfunction
 
-Plugin 'jiangmiao/auto-pairs'           " handle open/close quotes, brackets, etc
-    let g:AutoPairsMapCR=0              " map CR broken (at least in markfile file)
+Plugin 'Raimondi/delimitMate.git'       " handle open/close quotes, brackets, etc
+    let delimitMate_expand_cr=2
+    let delimitMate_expand_space=1
+
+" add appropriate 'end' statements when opening detected (must be loaded after delimitMate
+Plugin 'tpope/vim-endwise'
 
 " cs"'
 Plugin 'tpope/vim-surround'             " add surround action
@@ -197,9 +211,17 @@ nnoremap ; :
 
 let mapleader=","
 let g:mapleader=","
+map             <leader>1  <C-W>o
+map             <leader>2  <C-W>s
+map             <leader>3  <C-W>v
+map     <silent><leader>c  :Bdelete<cr>
+map     <silent><leader>e  :VimFilerExplorerQuit<cr>
+map     <silent><leader>p  :setlocal paste!<cr>
+nmap            <leader>P  "+P
+map     <silent><leader>w  :call ToggleWrap()<cr>
+noremap         <leader>y  "+y
+noremap         <leader>Y  "+y$
 
-map <leader>p :setlocal paste!<cr>
-map <leader>cs :colorscheme 
 map Y y$
 
 " Move between and adjust windows
@@ -207,9 +229,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-map <leader>1 <C-W>o
-map <leader>2 <C-W>s
-map <leader>3 <C-W>v
 
 " Make j and k work the way you expect
 nnoremap j gj
@@ -224,32 +243,18 @@ vnoremap > >gv
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
-nnoremap <leader><Tab>   :bnext<CR>
-nnoremap <leader><S-Tab> :bprevious<CR>
+nnoremap <Tab>   :bnext<cr>
+nnoremap <S-Tab> :bprev<cr>
 
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprev<cr>
-map <leader>te :tabedit 
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>fc <Esc>:call CleanClose(1)<cr>
-map <leader>fq <Esc>:call CleanClose(0)<cr>
-
-" When pressing <leader>cd switch to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>
-
-" Turn off search highlighting until the next search
-map <silent> <leader><cr> :nohl<CR><C-L>
-
-map <silent><leader>w :call ToggleWrap()<cr>
-
-noremap <leader>y "+y
-noremap <leader>Y "+y$
-"nmap <leader>p "+p
-nmap <leader>P "+P
-
-":au filetype help :nnoremap <buffer><CR> <c-]>
-":au filetype help :nnoremap <buffer><BS> <c-T>
+" nnoremap <leader><Tab>   :bnext<CR>
+" nnoremap <leader><S-Tab> :bprevious<CR>
+" map <leader>tn :tabnext<cr>
+" map <leader>tp :tabprev<cr>
+" map <leader>te :tabedit 
+" map <leader>tc :tabclose<cr>
+" map <leader>tm :tabmove
+" map <silent> <leader>fc <Esc>:call CleanClose(1)<cr>
+" map <silent> <leader>fq <Esc>:call CleanClose(0)<cr>
 
 "------------------------------------------------------------
 " Colour {{{1
