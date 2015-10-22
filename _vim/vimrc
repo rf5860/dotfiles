@@ -115,8 +115,7 @@ Plugin 'Raimondi/delimitMate.git'       " handle open/close quotes, brackets, et
 " add appropriate 'end' statements when opening detected (must be loaded after delimitMate
 Plugin 'tpope/vim-endwise'
 
-" cs"'
-Plugin 'tpope/vim-surround'             " add surround action
+Plugin 'tpope/vim-surround'             " add surround action e.g.: cs"'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'tpope/vim-fugitive'             " git wrapper
 Plugin 'mattn/emmet-vim'                " quick html/css editing
@@ -140,7 +139,7 @@ filetype indent plugin on
 syntax on
 
 " Unite extra setup after vundle#end
-call unite#custom#profile('default', 'context', { 'prompt': '» ' })
+call unite#custom#profile('default', 'context', {'prompt': '» '})
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 "------------------------------------------------------------

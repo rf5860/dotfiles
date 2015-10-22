@@ -17,7 +17,8 @@ binaries=(
     gsl
     hub
     less
-    npm
+    lua
+    pandoc
     rsync
     sqlite
     the_silver_searcher
