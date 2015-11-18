@@ -10,8 +10,9 @@ brew update
 
 echo "Installing binaries..."
 binaries=(
+    cmake
     elixir
-    erlang
+    gcc
     git
     gnu-getopt
     gsl
@@ -20,7 +21,6 @@ binaries=(
     lua
     pandoc
     rsync
-    sqlite
     the_silver_searcher
     vim
     zsh
@@ -41,7 +41,6 @@ apps=(
     karabiner
     macvim
     nvalt
-    pandoc
     pdftk
     qlcolorcode
     qlmarkdown
