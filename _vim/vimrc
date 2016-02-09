@@ -53,15 +53,15 @@ Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-expand-region'
 
 " for writing, in particular in markdown
-Plugin 'reedes/vim-pencil'
-    augroup pencil
-        autocmd!
-        autocmd FileType markdown
-            \   call pencil#init({'wrap': 'hard', 'textwidth': 78})
-            \ | setlocal spell makeprg=atdtool\ %
-        autocmd FileType text
-            \   call pencil#init({'wrap': 'hard', 'textwidth': 78})
-    augroup END
+" Plugin 'reedes/vim-pencil'
+"     augroup pencil
+"         autocmd!
+"         autocmd FileType markdown
+"             \   call pencil#init({'wrap': 'hard', 'textwidth': 78})
+"             \ | setlocal spell makeprg=atdtool\ %
+"         autocmd FileType text
+"             \   call pencil#init({'wrap': 'hard', 'textwidth': 78})
+"     augroup END
 
 " File, buffer, yank, and lots more
 Plugin 'Shougo/unite.vim'
@@ -131,6 +131,7 @@ Plugin 'honza/vim-snippets'
 " Language support
 Plugin 'othree/html5.vim'
 Plugin 'groenewege/vim-less'
+Plugin 'wavded/vim-stylus'
 Plugin 'tpope/vim-markdown'
 Plugin 'elixir-lang/vim-elixir'
 
@@ -197,7 +198,7 @@ endif
 set expandtab       " Use spaces instead of tabs
 set smarttab        " Be smart when using tabs ;)
 set tabstop=4       " 4 is the lonliest number
-set shiftwidth=4
+set shiftwidth=2
 set linebreak       " break at nice spot rather than text width
 set wrap            " Wrap lines
 set tw=0            " text width

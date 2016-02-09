@@ -168,7 +168,7 @@ end
 -- Centre window
 modalBind( modNone, 'c', cycleCalls( toGrid, {{0.1,0,0.8,1},{.04, 0, 0.92, 1},{0.22, 0.025, 0.56, 0.95}} ) )
 -- Toggle between maximized and its initial size and position.
-modalBind( modNone, 'space', function() toggleMaximize(  hs.window.focusedWindow() ) end )
+modalBind( modNone, 'space', function() toggleMaximize(  hs.window.focusedWindow() ); disableModal()  end )
 -- Size/position to one side of the screen
 modalBind( modNone, 'left',  cycleCalls( toGrid, { {0, 0, 0.5, 1},   {0, 0, 0.6, 1},   {0, 0, 0.4, 1} } ));
 modalBind( modNone, 'right', cycleCalls( toGrid, { {0.5, 0, 0.5, 1}, {0.4, 0, 0.6, 1}, {0.6, 0, 0.4, 1} } ));
@@ -181,8 +181,8 @@ modalBind( modNone, 'down',  function() toGrid( {0, 0.7, 1, 0.3 } ) end )
 hs.hotkey.bind( modHyper, 'c', caffeinate )
 hs.hotkey.bind( modHyper, 'f', function() hs.application.launchOrFocus( "Finder" ) end )
 hs.hotkey.bind( modHyper, 'h', function() os.execute( "open ~" ) end )
--- hs.hotkey.bind( modHyper, 'q', function() hs.application.launchOrFocus( "Google Chrome" ) end )
--- hs.hotkey.bind( modHyper, 'w', function() hs.application.launchOrFocus( "iTerm" ) end )
+hs.hotkey.bind( modHyper, 'q', function() hs.application.launchOrFocus( "Google Chrome" ) end )
+hs.hotkey.bind( modHyper, 'w', function() hs.application.launchOrFocus( "iTerm" ) end )
 hs.hotkey.bind( modHyper, 'm', toggleMicrophoneMute )
 hs.hotkey.bind( modHyper, 'y', hs.toggleConsole )
 -- hs.hotkey.bind( modHyper, '1', spaces.movetospace(1) )
