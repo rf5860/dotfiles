@@ -25,9 +25,9 @@ plugins=(gem git gitignore brew colored-man mix sudo dirhistory history)
 source $ZSH/oh-my-zsh.sh
 
 path=(
+  $HOME/.rvm/bin # rvm demands this be first in path
   $HOME/local/bin
   $HOME/.nvm/bin
-  $HOME/.rvm/bin
   $path
 )
 
