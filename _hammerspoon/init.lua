@@ -185,6 +185,9 @@ hs.hotkey.bind( modHyper, 'q', function() hs.application.launchOrFocus( "Google 
 hs.hotkey.bind( modHyper, 'w', function() hs.application.launchOrFocus( "iTerm" ) end )
 hs.hotkey.bind( modHyper, 'm', toggleMicrophoneMute )
 hs.hotkey.bind( modHyper, 'y', hs.toggleConsole )
+--
+-- Toggle between maximized and its initial size and position.
+hs.hotkey.bind( modHyper, 'space', function() toggleMaximize(  hs.window.focusedWindow() ); end )
 -- hs.hotkey.bind( modHyper, '1', spaces.movetospace(1) )
 -- hs.hotkey.bind( modHyper, '2', spaces.movetospace(2) )
 
