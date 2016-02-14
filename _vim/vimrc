@@ -121,7 +121,7 @@ Plugin 'vim-scripts/matchit.zip'
 " Plugin 'tpope/vim-fugitive'             " git wrapper
 Plugin 'mattn/emmet-vim'                " quick html/css editing
 
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'terryma/vim-multiple-cursors'
 
 " Snippets support
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -154,7 +154,7 @@ set hlsearch
 set incsearch
 set showmatch
 set matchtime=2
-set scrolloff=6             " Keep at least 7 lines on screen when using J/K
+set scrolloff=5             " Keep at least 5 lines on screen when using J/K
 set foldlevel=999
 set noswapfile
 
@@ -249,13 +249,6 @@ nnoremap <S-Tab> :bprev<cr>
 
 " nnoremap <leader><Tab>   :bnext<CR>
 " nnoremap <leader><S-Tab> :bprevious<CR>
-" map <leader>tn :tabnext<cr>
-" map <leader>tp :tabprev<cr>
-" map <leader>te :tabedit 
-" map <leader>tc :tabclose<cr>
-" map <leader>tm :tabmove
-" map <silent> <leader>fc <Esc>:call CleanClose(1)<cr>
-" map <silent> <leader>fq <Esc>:call CleanClose(0)<cr>
 
 "------------------------------------------------------------
 " Colour {{{1
@@ -275,22 +268,4 @@ function! ToggleWrap()
         set fo+=a
         echo "Wrapping ON"
     endif
-endfunction
-
-function! CleanClose(tosave)
-  if (a:tosave == 1)
-      w!
-  endif
-  let todelbufNr = bufnr("%")
-  let newbufNr = bufnr("#")
-  if ((newbufNr != -1) && (newbufNr != todelbufNr) && buflisted(newbufNr))
-      exe "b".newbufNr
-  else
-      bnext
-  endif
-
-  if (bufnr("%") == todelbufNr)
-      new
-  endif
-  exe "bd".todelbufNr
 endfunction
