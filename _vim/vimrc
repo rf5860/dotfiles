@@ -1,6 +1,4 @@
 " Ideas in this vimrc from many places, including:
-"   http://vim.wikia.com/wiki/Example_vimrc 
-"   http://amix.dk/vim/vimrc.html
 "   http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
 "   http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
 
@@ -15,10 +13,9 @@ set viminfo+=n~/.cache/viminfo
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
 
-" Status line
-Plugin 'bling/vim-airline'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'            " Status line
     let g:airline_theme='glenn'
     let g:airline_powerline_fonts=1
     let g:airline#extensions#whitespace#enabled=0
@@ -42,15 +39,6 @@ Plugin 'haya14busa/incsearch.vim'
     map g* <Plug>(incsearch-nohl-g*)
     map g# <Plug>(incsearch-nohl-g#)
     let g:incsearch#consistent_n_direction = 1
-
-" Delete buffer leaving window structure intact
-Plugin 'gwww/vim-bbye'
-
-" Toggle comments: <visual>gc, gc<motion>; Remove comments on current and adjacent lines gcu
-Plugin 'tpope/vim-commentary'
-
-" + to expand visual select; _ (underscore) to shrink
-Plugin 'terryma/vim-expand-region'
 
 " for writing, in particular in markdown
 " Plugin 'reedes/vim-pencil'
@@ -83,22 +71,20 @@ Plugin 'Shougo/unite.vim'
     command! -nargs=? -complete=customlist,vimfiler#complete VimFilerExplorerQuit 
         \ call vimfiler#init#_command({'explorer':1,'explorer_columns':'type:size:time','split':0,'quit':1}, <q-args>)
 
-    nmap <space> [unite]
-    nnoremap [unite] <nop>
-
     let g:unite_source_grep_command='ag'
     let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
-    let g:unite_source_grep_default_opts='-i --vimgrep --hidden'
+    let g:unite_source_grep_default_opts='--vimgrep --hidden --nogroup'
     let g:unite_source_grep_recursive_opt=''
     let g:unite_source_history_yank_enable = 1
 
-    nnoremap <silent> [unite]t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-    nnoremap <silent> [unite]f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-    nnoremap <silent> [unite]r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-    nnoremap <silent> [unite]o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-    nnoremap <silent> [unite]y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-    nnoremap <silent> [unite]b :<C-u>Unite -no-split -buffer-name=buffer  -quick-match buffer<cr>
-    nnoremap <silent> [unite]/ :<C-u>Unite -no-split -buffer-name=search  grep:.<cr>
+    nmap <space> [unite]
+    nnoremap [unite] <nop>
+
+    nnoremap <silent> [unite]t :<C-u>Unite -start-insert file_rec/async:!<cr>
+    nnoremap <silent> [unite]f :<C-u>Unite -start-insert file<cr>
+    nnoremap <silent> [unite]o :<C-u>Unite -start-insert outline<cr>
+    nnoremap <silent> [unite]b :<C-u>Unite -quick-match  buffer<cr>
+    nnoremap <silent> [unite]/ :<C-u>Unite grep:.<cr>
 
     " Custom mappings for the unite buffer
     autocmd FileType unite call s:unite_settings()
@@ -109,19 +95,14 @@ Plugin 'Shougo/unite.vim'
         imap <buffer> <esc>   <Plug>(unite_exit)
     endfunction
 
-Plugin 'Raimondi/delimitMate.git'       " handle open/close quotes, brackets, etc
-    let delimitMate_expand_cr=2
-    let delimitMate_expand_space=1
-
-" add appropriate 'end' statements when opening detected (must be loaded after delimitMate
-Plugin 'tpope/vim-endwise'
-
-Plugin 'tpope/vim-surround'             " add surround action e.g.: cs"'
-Plugin 'vim-scripts/matchit.zip'
-" Plugin 'tpope/vim-fugitive'             " git wrapper
-Plugin 'mattn/emmet-vim'                " quick html/css editing
-
-" Plugin 'terryma/vim-multiple-cursors'
+Plugin 'eapache/auto-pairs.git'       " auto close quotes, brackets
+Plugin 'gwww/vim-bbye'                " Delete buffer leaves window structure intact
+Plugin 'tpope/vim-commentary'         " Toggle comments: <visual>gc, gc<motion>
+Plugin 'terryma/vim-expand-region'    " + to expand visual select; _ to shrink
+Plugin 'tpope/vim-endwise'            " auto close begin, do, ...
+Plugin 'tpope/vim-surround'           " add surround action e.g.: cs])
+Plugin 'vim-scripts/matchit.zip'      " % command matches if/else/end and more
+Plugin 'mattn/emmet-vim'              " quick html/css editing
 
 " Snippets support
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -141,7 +122,10 @@ filetype indent plugin on
 syntax on
 
 " Unite extra setup after vundle#end
-call unite#custom#profile('default', 'context', {'prompt': '» '})
+call unite#custom#profile('default', 'context', {
+  \   'prompt': '» ',
+  \   'no_split': 1,
+  \ })
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 "------------------------------------------------------------
@@ -196,15 +180,15 @@ endif
 
 "------------------------------------------------------------
 " Indentation options {{{1
-set expandtab       " Use spaces instead of tabs
-set smarttab        " Be smart when using tabs ;)
-set tabstop=4       " 4 is the lonliest number
+set expandtab       " expand tabs into spaces
+set smarttab
+set tabstop=4
 set shiftwidth=2
 set linebreak       " break at nice spot rather than text width
 set wrap            " Wrap lines
-set tw=0            " text width
-set ai              " Auto indent
-set si              " Smart indent
+set textwidth=0
+set autoindent
+set smartindent
 
 "------------------------------------------------------------
 " Mappings {{{1
@@ -225,7 +209,7 @@ noremap         <leader>Y  "+y$
 
 map Y y$
 
-" Move between and adjust windows
+" Move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -242,13 +226,11 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Keep the cursor in place while joining lines
-nnoremap J mzJ`z
+" nnoremap J mzJ`z
 
-nnoremap <Tab>   :bnext<cr>
-nnoremap <S-Tab> :bprev<cr>
-
-" nnoremap <leader><Tab>   :bnext<CR>
-" nnoremap <leader><S-Tab> :bprevious<CR>
+nnoremap <Tab>         :bnext<cr>
+nnoremap <S-Tab>       :bprev<cr>
+nnoremap <leader><Tab> :bnext<CR>
 
 "------------------------------------------------------------
 " Colour {{{1
