@@ -1,7 +1,3 @@
-" Ideas in this vimrc from many places, including:
-"   http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
-"   http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
-
 set nocompatible
 set modeline
 set viminfo+=n~/.cache/viminfo
