@@ -9,6 +9,9 @@ defaults write com.apple.dock orientation -string left
 # Quit printer app when printing is complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
+# Autohide scrollbar timeout
+defaults write -g NSOverlayScrollerHideDelay -float 5
+
 # This setting will turn off the keyboard lights when the keyboard is not touched for five minutes. 
 defaults write com.apple.BezelServices kDimTime -int 300
 
@@ -43,3 +46,6 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Set iterm hotkey windows length of animation
 defaults write com.googlecode.iterm2 HotkeyTermAnimationDuration -float 0.15
+
+# Set bluetooth audio quality so that it does not skip
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40

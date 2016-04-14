@@ -12,6 +12,7 @@ echo "Installing binaries..."
 binaries=(
     cmake
     elixir
+    exiftool
     gcc
     git
     gnu-getopt
@@ -22,6 +23,7 @@ binaries=(
     pandoc
     rsync
     the_silver_searcher
+    youtube-dl
     vim
     zsh
 )
