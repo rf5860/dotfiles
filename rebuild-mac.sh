@@ -69,6 +69,10 @@ brew cask install ${fonts[@]}
 brew list --versions
 brew cask list
 
+echo "Installing zsh-antigen..."
+mkdir -p $HOME/.antigen
+curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > antigen.zsh
+
 echo "Installing rvm, latest ruby stable..."
 curl -sSL https://get.rvm.io | bash -s stable --ruby
 
