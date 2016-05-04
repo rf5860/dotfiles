@@ -7,10 +7,11 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
   dirhistory
   gem
-  git
+  gitfast
   gitignore
   mix
   sudo
+#  psprint/zsh-navigation-tools
 EOBUNDLES
 antigen apply
 
@@ -69,14 +70,14 @@ path() {
 # This was written entirely by Mikael Magnusson (Mikachu)
 # Basically type '...' to get '../..' with successive .'s adding /..
 function rationalise-dot {
-    local MATCH # keep the regex match from leaking to the environment
-    if [[ $LBUFFER =~ '(^|/| |      |'$'\n''|\||;|&)\.\.$' ]]; then
-      LBUFFER+=/
-      zle self-insert
-      zle self-insert
-    else
-      zle self-insert
-    fi
+  local MATCH # keep the regex match from leaking to the environment
+  if [[ $LBUFFER =~ '(^|/| |      |'$'\n''|\||;|&)\.\.$' ]]; then
+    LBUFFER+=/
+    zle self-insert
+    zle self-insert
+  else
+    zle self-insert
+  fi
 }
 zle -N rationalise-dot
 bindkey . rationalise-dot

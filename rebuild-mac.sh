@@ -1,11 +1,13 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
+
+cd $HOME
 
 # Check for Homebrew, install if we don't have it
 if test ! $(which brew); then
     echo "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
-echo "Updating homebrew..."
+echo "Updating homebrew package list..."
 brew update
 
 echo "Installing binaries..."
@@ -17,14 +19,14 @@ binaries=(
     git
     gnu-getopt
     gsl
-    hub
     less
     lua
     pandoc
     rsync
     the_silver_searcher
-    youtube-dl
+    tree
     vim
+    youtube-dl
     zsh
 )
 brew install ${binaries[@]}
@@ -50,7 +52,6 @@ apps=(
     seil
     skype
     sublime-text3
-    tree
     tunnelblick
     vlc
 )
@@ -66,8 +67,14 @@ fonts=(
 )
 brew cask install ${fonts[@]}
 
+echo "Brews installed..."
 brew list --versions
-brew cask list
+echo "Casks installed..."
+brew cask list --versions
+
+echo "Clone dotfiles from github..."
+git clone https://github.com/gwww/dotfiles.git $HOME/.dotfiles
+$HOME/.dotfiles/link.sh
 
 echo "Installing zsh-antigen..."
 mkdir -p $HOME/.antigen
