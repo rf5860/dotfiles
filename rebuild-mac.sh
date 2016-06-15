@@ -10,12 +10,11 @@ fi
 echo "Updating homebrew package list..."
 brew update
 
-echo "Installing binaries..."
+echo "Installing homebrew binaries..."
 binaries=(
     cmake
     elixir
     exiftool
-    gcc
     git
     gnu-getopt
     gsl
@@ -85,7 +84,6 @@ curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 echo "Installing ruby gems..."
 gems=(
-    byebug
     cucumber
     jekyll
     less

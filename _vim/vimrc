@@ -68,7 +68,7 @@ Plugin 'Shougo/unite.vim'             " File, buffer, yank, and lots more
       " Enable navigation with control-j and control-k in insert mode
       imap <buffer> <C-j>   <Plug>(unite_select_next_line)
       imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-       imap <buffer> <esc>   <Plug>(unite_exit)
+      imap <buffer> <esc>   <Plug>(unite_exit)
     endfunction
 
 Plugin 'Shougo/unite-outline' " unite outline from buffer
@@ -221,6 +221,12 @@ vnoremap > >gv
 nnoremap <Tab>         :bnext<cr>
 nnoremap <S-Tab>       :bprev<cr>
 nnoremap <leader><Tab> :bnext<CR>
+
+" Fix page up and down
+map <PageUp> <C-U>
+map <PageDown> <C-D>
+imap <PageUp> <C-O><C-U>
+imap <PageDown> <C-O><C-D>
 
 "------------------------------------------------------------
 " Colour {{{1

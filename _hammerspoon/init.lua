@@ -105,13 +105,13 @@ end
 -- Microphone mute/unmute
 local microphoneLevel = 75      -- my default level
 function toggleMicrophoneMute()
-  success, currentVolume = hs.applescript.applescript( "input volume of (get volume settings)" )
+  success, currentVolume = hs.applescript( "input volume of (get volume settings)" )
   if success then
     if currentVolume == 0 then
-      success, junk = hs.applescript.applescript( "set volume input volume " .. microphoneLevel )
+      success, junk = hs.applescript( "set volume input volume " .. microphoneLevel )
       hs.notify.new( {title='Microphone unmuted', subTitle='Level: '..microphoneLevel} ):send()
     else
-      success, junk = hs.applescript.applescript( "set volume input volume 0" )
+      success, junk = hs.applescript( "set volume input volume 0" )
       hs.notify.new( {title='Microphone muted'} ):send()
       microphoneLevel = currentVolume
     end
