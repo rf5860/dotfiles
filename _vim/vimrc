@@ -1,40 +1,40 @@
 set nocompatible
 set modeline
-set viminfo+=n~/.cache/viminfo
+
+if has('nvim')
+  set viminfo+=n~/.cache/neoviminfo
+else
+  set viminfo+=n~/.cache/viminfo
+endif
 
 "------------------------------------------------------------
 " Plugins and most of their config {{{1
+call plug#begin('~/.vim/plugged')
 
-" Plugin loader to load all other plugins
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-Plugin 'bling/vim-airline'            " Status line
-    let g:airline_theme='glenn'
-    let g:airline_powerline_fonts=1
-    let g:airline#extensions#whitespace#enabled=0
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#fnamemod = ':t'
-    set noshowmode
-    set laststatus=2
-    set cmdheight=2
+Plug 'bling/vim-airline'            " Status line
+  let g:airline_theme='glenn'
+  let g:airline_powerline_fonts=1
+  let g:airline#extensions#whitespace#enabled=0
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#fnamemod = ':t'
+  set noshowmode
+  set laststatus=2
+  set cmdheight=2
 
 " Improved incremental search
-Plugin 'haya14busa/incsearch.vim'
-    map /  <Plug>(incsearch-forward)
-    map ?  <Plug>(incsearch-backward)
-    map g/ <Plug>(incsearch-stay)
-    set hlsearch
-    let g:incsearch#auto_nohlsearch = 1
-    map n  <Plug>(incsearch-nohl-n)
-    map N  <Plug>(incsearch-nohl-N)
-    map *  <Plug>(incsearch-nohl-*)
-    map #  <Plug>(incsearch-nohl-#)
-    map g* <Plug>(incsearch-nohl-g*)
-    map g# <Plug>(incsearch-nohl-g#)
-    let g:incsearch#consistent_n_direction = 1
+Plug 'haya14busa/incsearch.vim'
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+  set hlsearch
+  let g:incsearch#auto_nohlsearch = 1
+  map n  <Plug>(incsearch-nohl-n)
+  map N  <Plug>(incsearch-nohl-N)
+  map *  <Plug>(incsearch-nohl-*)
+  map #  <Plug>(incsearch-nohl-#)
+  map g* <Plug>(incsearch-nohl-g*)
+  map g# <Plug>(incsearch-nohl-g#)
+  let g:incsearch#consistent_n_direction = 1
 
 " for writing, in particular in markdown
 " Plugin 'reedes/vim-pencil'
@@ -47,8 +47,8 @@ Plugin 'haya14busa/incsearch.vim'
 "       \   call pencil#init({'wrap': 'hard', 'textwidth': 78})
 "   augroup END
 
-Plugin 'Shougo/vimproc.vim'           " Support for Unite async mode
-Plugin 'Shougo/unite.vim'             " File, buffer, yank, and lots more
+Plug 'Shougo/vimproc.vim'           " Support for Unite async mode
+Plug 'Shougo/unite.vim'             " File, buffer, yank, and lots more
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts='--vimgrep --hidden --nogroup'
   let g:unite_source_grep_recursive_opt=''
@@ -71,8 +71,8 @@ Plugin 'Shougo/unite.vim'             " File, buffer, yank, and lots more
       imap <buffer> <esc>   <Plug>(unite_exit)
     endfunction
 
-Plugin 'Shougo/unite-outline' " unite outline from buffer
-Plugin 'Shougo/vimfiler.vim'  " unite explorer
+Plug 'Shougo/unite-outline' " unite outline from buffer
+Plug 'Shougo/vimfiler.vim'  " unite explorer
   let g:vimfiler_as_default_explorer = 1
   let g:vimfiler_tree_leaf_icon =     ' '
   let g:vimfiler_tree_opened_icon =   '▾'
@@ -87,29 +87,30 @@ Plugin 'Shougo/vimfiler.vim'  " unite explorer
         \   {'explorer':1,'explorer_columns':'type:size:time',
         \   'split':0,'quit':1}, <q-args>)
 
-Plugin 'eapache/auto-pairs.git'       " auto close quotes, brackets
-Plugin 'gwww/vim-bbye'                " Delete buffer leaves window structure intact
-Plugin 'tpope/vim-commentary'         " Toggle comments: <visual>gc, gc<motion>
-Plugin 'terryma/vim-expand-region'    " + to expand visual select; _ to shrink
-Plugin 'tpope/vim-endwise'            " auto close begin, do, ...
-Plugin 'tpope/vim-surround'           " add surround action e.g.: cs])
-Plugin 'vim-scripts/matchit.zip'      " % command matches if/else/end and more
-Plugin 'mattn/emmet-vim'              " quick html/css editing
+Plug 'jiangmiao/auto-pairs'         " auto close quotes, brackets
+Plug 'gwww/vim-bbye'                " Delete buffer leaves window structure intact
+Plug 'tpope/vim-commentary'         " Toggle comments: <visual>gc, gc<motion>
+Plug 'terryma/vim-expand-region'    " + to expand visual select; _ to shrink
+Plug 'tpope/vim-endwise'            " auto close begin, do, ...
+Plug 'tpope/vim-surround'           " add surround action e.g.: cs])
+Plug 'vim-scripts/matchit.zip'      " % command matches if/else/end and more
+Plug 'mattn/emmet-vim'              " quick html/css editing
 
 " Snippets support
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 
 " Language support
-Plugin 'othree/html5.vim'
-Plugin 'groenewege/vim-less'
-Plugin 'wavded/vim-stylus'
-Plugin 'tpope/vim-markdown'
-Plugin 'elixir-lang/vim-elixir'
+Plug 'othree/html5.vim'
+Plug 'groenewege/vim-less'
+Plug 'wavded/vim-stylus'
+Plug 'tpope/vim-markdown'
+Plug 'elixir-lang/vim-elixir'
 
-call vundle#end()
+call plug#end()
+
 filetype indent plugin on
 syntax on
 
@@ -124,8 +125,6 @@ set hidden                  " Allow to switch buffers with first saving
 set wildmenu                " Better command-line completion
 set wildmode=longest,list
 set showcmd                 " Show partial commands in the last line of the screen
-set hlsearch
-set incsearch
 set showmatch
 set matchtime=2
 set scrolloff=5             " Keep at least 5 lines on screen when using J/K
