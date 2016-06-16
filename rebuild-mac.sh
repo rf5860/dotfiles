@@ -7,11 +7,12 @@ if test ! $(which brew); then
     echo "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
+
 echo "Updating homebrew package list..."
 brew update
 
-echo "Installing homebrew binaries..."
-binaries=(
+echo "Installing brew apps..."
+brews=(
     cmake
     elixir
     exiftool
@@ -28,11 +29,11 @@ binaries=(
     youtube-dl
     zsh
 )
-brew install ${binaries[@]}
+brew install ${brews[@]}
 
-echo "Installing apps..."
+echo "Installing cask apps..."
 brew install caskroom/cask/brew-cask
-apps=(
+casks=(
     alfred
     android-file-transfer
     calibre
@@ -40,21 +41,15 @@ apps=(
     google-chrome
     hammerspoon
     iterm2
-    java
     karabiner
-    macvim
-    nvalt
-    pdftk
-    qlcolorcode
     qlmarkdown
     qlstephen
     seil
     skype
-    sublime-text3
     tunnelblick
     vlc
 )
-brew cask install --appdir="/Applications" ${apps[@]}
+brew cask install --appdir="/Applications" ${casks[@]}
 brew cask alfred link
 
 brew tap homebrew/dupes
@@ -77,7 +72,9 @@ $HOME/.dotfiles/link.sh
 
 echo "Installing zsh-antigen..."
 mkdir -p $HOME/.antigen
-curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > antigen.zsh
+curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > $HOME/.antigen/antigen.zsh
+source $HOME/.antigen/antigen.sh
+antigen update
 
 echo "Installing rvm, latest ruby stable..."
 curl -sSL https://get.rvm.io | bash -s stable --ruby
