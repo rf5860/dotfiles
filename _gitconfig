@@ -3,7 +3,7 @@
 [core]
   autocrlf = input
   pager = less -F -X
-  editor = /Applications/MacVim.app/Contents/MacOS/Vim
+  editor = /usr/local/bin/vim
 [alias]
   co = checkout
   ci = commit
