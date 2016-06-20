@@ -34,8 +34,6 @@ alias more='less'
 alias rake='noglob rake'
 alias ghi='git hist'
 
-alias vi=nvim
-
 # 
 # Environment
 #
