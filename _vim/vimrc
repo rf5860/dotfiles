@@ -120,6 +120,7 @@ Plug 'groenewege/vim-less'
 Plug 'wavded/vim-stylus'
 Plug 'tpope/vim-markdown'
   let g:markdown_syntax_conceal = 0
+Plug 'vim-ruby/vim-ruby'
 Plug 'elixir-lang/vim-elixir'
 
 call plug#end()
