@@ -11,7 +11,7 @@ endif
 " Plugins and most of their config {{{1
 call plug#begin('~/.vim/plugged')
 
-Plug 'bling/vim-airline'            " Status line
+Plug 'bling/vim-airline'            " Status and tab line
   let g:airline_theme='glenn'
   let g:airline_powerline_fonts=1
   let g:airline#extensions#whitespace#enabled=0
@@ -35,6 +35,7 @@ Plug 'haya14busa/incsearch.vim'
   map g# <Plug>(incsearch-nohl-g#)
   let g:incsearch#consistent_n_direction = 1
 
+" f/t commands on steroids
 Plug 'justinmk/vim-sneak'
   nmap f <Plug>Sneak_f
   nmap F <Plug>Sneak_F
@@ -98,8 +99,8 @@ Plug 'Shougo/vimfiler.vim'  " unite explorer
         \   'split':0,'quit':1}, <q-args>)
 
 Plug 'jiangmiao/auto-pairs'         " auto close quotes, brackets
-Plug 'gwww/vim-bbye'                " Delete buffer leaves window structure intact
-Plug 'tpope/vim-commentary'         " Toggle comments: <visual>gc, gc<motion>
+Plug 'gwww/vim-bbye'                " delete buffer leaves window structure intact
+Plug 'tpope/vim-commentary'         " toggle comments: <visual>gc, gc<motion>
 Plug 'terryma/vim-expand-region'    " + to expand visual select; _ to shrink
 Plug 'tpope/vim-endwise'            " auto close begin, do, ...
 Plug 'tpope/vim-surround'           " add surround text objects e.g.: cs])
@@ -132,7 +133,7 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 
 "------------------------------------------------------------
 " Must have options {{{1
-set hidden                  " Allow to switch buffers with first saving
+set hidden                  " Allow to switch buffers without first saving
 set wildmenu                " Better command-line completion
 set wildmode=longest,list
 set showcmd                 " Show partial commands in the last line of the screen
