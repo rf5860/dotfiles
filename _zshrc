@@ -19,11 +19,12 @@ antigen apply
 # Set path
 #
 path=(
-  $HOME/.rvm/bin # rvm demands this be first in path
   $HOME/local/bin
   $HOME/.nvm/bin
   $path
 )
+source ~/.rvm/scripts/rvm
+rvm use 2.3.1 >/dev/null
 
 #
 # Aliases
@@ -59,16 +60,17 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 #
 path() {
   echo $PATH | tr ":" "\n" | \
-  awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
-     sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
-     sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
-     sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
-     sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
-     print }"
+  awk "{ \
+    sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
+    sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
+    sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
+    sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
+    sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
+    print }"
 }
 
 # This was written entirely by Mikael Magnusson (Mikachu)
-# Basically type '...' to get '../..' with successive .'s adding /..
+# Type '...' to get '../..' with successive .'s adding /..
 function rationalise-dot {
   local MATCH # keep the regex match from leaking to the environment
   if [[ $LBUFFER =~ '(^|/| |      |'$'\n''|\||;|&)\.\.$' ]]; then

@@ -93,7 +93,7 @@ Plug 'Shougo/vimfiler.vim'  " unite explorer
   let g:vimfiler_readonly_file_icon = '✗'
   let g:vimfiler_time_format = '%Y-%m-%d %H:%M:%S'
   let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
-  command! -nargs=? -complete=customlist,vimfiler#complete 
+  command! -nargs=? -complete=customlist,vimfiler#complete
         \ VimFilerExplorerQuit call vimfiler#init#_command(
         \   {'explorer':1,'explorer_columns':'type:size:time',
         \   'split':0,'quit':1}, <q-args>)
@@ -130,6 +130,8 @@ call plug#end()
 filetype indent plugin on
 syntax on
 
+autocmd filetype crontab setlocal nobackup nowritebackup
+
 " Unite extra setup after vundle#end
 call unite#custom#profile('default', 'context', {'prompt': '» ','no_split': 1})
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -158,12 +160,13 @@ set number
 set nostartofline           " Stop certain movements from going to first char of line
 set confirm                 " Raise dialogue instead of failing unsaved changes
 set visualbell              " Use visual bell instead of beeping on error
-set t_vb=                   " Don't flash either! 
+set t_vb=                   " Don't flash either!
 if has('mouse')
     set mouse=a             " Enable use of the mouse for all modes
 endif
 set formatoptions+=nj       " recognize numbered lists; smart comment Joining
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,trail:· ",eol:¬
+set list
 set lazyredraw              " Don't redraw during macros
 
 " Quickly time out on keycodes, but never time out on mappings
@@ -247,7 +250,8 @@ imap <PageDown> <C-O><C-D>
 
 "------------------------------------------------------------
 " Colour {{{1
-colorscheme glenn
+"colorscheme glenn
+colorscheme jellybeans
 hi link htmlLink NONE
 hi link htmlItalic NONE
 hi Search cterm=NONE ctermfg=251 ctermbg=31

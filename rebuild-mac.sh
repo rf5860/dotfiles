@@ -83,12 +83,8 @@ echo "Installing ruby gems..."
 gems=(
     cucumber
     jekyll
-    less
     page-object
     pry
-    rb-gsl
-    rspec
-    therubyracer
 )
 gem install ${gems[@]} --no-ri --no-rdoc 
 
